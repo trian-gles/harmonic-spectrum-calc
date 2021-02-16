@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Harmonic Spectrum Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+  </head>
+
+<body>
+<main>
+  <div class="container-fluid">
+    <header>
+      <h1 class="text-center text-primary" id="title">
+        Harmonic Spectrum Calculator
+      </h1>
+    </header>
+    <form action="/" method="POST">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="pitch">Pitch</label>
+          <select name="pitch" class="form-control" id="pitch">
+            {% for letter in letters %}
+            <option value="{{letter}}">{{letter}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="acc">Accidental</label>
+          <select name="acc" class="form-control" id="acc">
+            <option value=""></option>
+            {% for acc in accs %}
+            <option value="{{acc}}">{{acc}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="register">Register</label>
+          <input type="number" class="form-control" name="register" id="register" min=-2 max=7 value=1>
+          </input>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="n">Number of Partials</label>
+          <input type="number" class="form-control" name="n" id="n" min=1 max=32 value=16>
+          </input>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="dist">Distortion Coefficient</label>
+          <input type="number" class="form-control" name="dist" id="dist" min=.01 max=2 step=.01 value=1>
+          </input>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="freq">Frequency Shift (Hz)</label>
+          <input type="number" class="form-control" name="freq" id="freq" min=-200 max=200 value=0 step=5>
+          </input>
+        </div>
+      </div>
+    <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+    </form>
+    {% if results %}
+      <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Pitch</th>
+          <th scope="col">MIDI</th>
+          <th scope="col">Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for part in results %}
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    {% endif %}
+  </main>
+<footer>
+  <p id="footer" class="text-center"><a href="kieranmcauliffemusic.com">by kieran</a></p>
+</footer>
+</body>
+</html>

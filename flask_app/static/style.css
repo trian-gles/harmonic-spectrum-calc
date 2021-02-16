@@ -1,0 +1,14 @@
+label {
+  font-size: 1.1em;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: gray;
+}
+
+a {
+  color: white !important;
+}
