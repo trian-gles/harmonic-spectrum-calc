@@ -7,9 +7,9 @@ midi_to_name_acc_dict = {0:'', 0.25:'𝄮', 0.5:'𝄲', 0.75:'𝄱', 1:'♯', -0
 
 def format_pitch(letter, register, acc=None):
     if acc:
-        return letter + acc + register
+        return letter + acc + str(register)
     else:
-        return letter + register
+        return letter + str(register)
 
 def get_partials(fundamental, n_limit, coefficient=1, shift=0):
     partial_list = []
@@ -90,10 +90,10 @@ def name_to_partials_dicts(name, n_limit, coefficient=1, shift=0):
     for partial in partials:
         if partial != 0:
             new_part = {}
-            new_part['n'] = i
+            new_part['n'] = str(i)
             new_part['pitch'] = freq_to_name(partial)
-            new_part['midi'] = freq_to_midi(partial)
-            new_part['freq'] = partial
+            new_part['midi'] = str(freq_to_midi(partial))
+            new_part['freq'] = str(partial)
             partial_dicts.append(new_part)
             i += 1
     return partial_dicts
@@ -101,3 +101,4 @@ def name_to_partials_dicts(name, n_limit, coefficient=1, shift=0):
 
 if __name__ == "__main__":
     print(name_to_partials_dicts("G♯1", 16))
+    print(format_pitch("G", 6, "♯"))

@@ -59,6 +59,12 @@
     <button type="submit" class="btn btn-primary btn-block">Calculate</button>
     </form>
     {% if results %}
+      <h2 class="text-center text-secondary" id="title">
+      Results for {{target_pitch}}
+      </h2>
+      <h4 class="text-center text-secondary" id="title">
+      Distortion coefficient = {{dist}} Frequency shift = {{freq}}
+      </h4>
       <table class="table">
       <thead>
         <tr>
@@ -71,10 +77,10 @@
       <tbody>
         {% for part in results %}
         <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <th scope="row">{{part['n']}}</th>
+          <td>{{part['pitch']}}</td>
+          <td>{{part['midi']}}</td>
+          <td>{{part['freq']}}</td>
         </tr>
         {% endfor %}
       </tbody>
